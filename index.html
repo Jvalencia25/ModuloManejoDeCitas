@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+</head>
+<body>
+    <h1>Bienvenido</h1>
+    
+    <div>
+        <h2>Inicia sesión</h2>
+
+        <form id="login">
+            <h3>Número de identificación o usuario</h3>
+            <input type="text" id="loginUsuario" placeholder="Número de identificación o usuario" required/>
+            <h3>Contraseña</h3>
+            <input type="text" id="loginContrasena" placeholder="Contraseña" required/>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+
+    <br>
+
+    <div>
+        <h2>Registrarse</h2>
+
+        <h3>Selecciona el tipo de usuario</h3>
+        <select id="selMedPac">
+            <option value="paciente">Paciente</option>
+            <option value="medico">Medico</option>
+        </select>
+
+        <form id="registroPac">
+            <h3>Ingresa tu nombre</h3>
+            <input type="text" id="nombre" placeholder="Nombre" required/>
+
+            <h3>Ingresa tu fecha de nacimiento</h3>
+            <input type="date" id="fechaNac" required/>
+
+            <h3>Selecciona tu tipo de documento</h3>
+            <select id="seltipoDoc">
+                <option value="cc">Cédula de ciudadanía</option>
+                <option value="rc">Registro civil</option>
+                <option value="ti">Tarjeta de identidad</option>
+                <option value="ce">Cédula de extranjería</option>
+                <option value="pa">Pasaporte</option>
+            </select>
+
+            <h3>Ingresa el número</h3>
+            <input type="tel" id="numId" placeholder="Número de identificación" required/>
+        
+            <h3>Selecciona tu género</h3>
+            <select id="selgen">
+                <option value="m">Masculino</option>
+                <option value="f">Femenino</option>
+                <option value="o">Otro</option>
+            </select>
+
+            <h3>Ingresa tu número de celular</h3>
+            <input type="tel" id="cel" placeholder="Número de celular" required/>
+        
+            <h3>Ingresa una contraseña</h3>
+            <input type="password" id="pass" placeholder="Contraseña" required/>
+        </form>
+        <button type="submit">Crear</button>
+    </div>
+    
+    <script src="js/login.js"></script>
+</body>
+</html>
