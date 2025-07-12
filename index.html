@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>title</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="css/estilos.css" />
 </head>
 <body>
     <h1>Bienvenido</h1>
@@ -10,11 +11,11 @@
     <div>
         <h2>Inicia sesión</h2>
 
-        <form id="login">
-            <h3>Número de identificación o usuario</h3>
-            <input type="text" id="loginUsuario" placeholder="Número de identificación o usuario" required/>
+        <form id="loginForm">
+            <h3>Número de identificación</h3>
+            <input type="text" id="loginUsuario" placeholder="Número de identificación" required/>
             <h3>Contraseña</h3>
-            <input type="text" id="loginContrasena" placeholder="Contraseña" required/>
+            <input type="password" id="loginContrasena" placeholder="Contraseña" required/>
             <button type="submit">Ingresar</button>
         </form>
     </div>
@@ -24,13 +25,13 @@
     <div>
         <h2>Registrarse</h2>
 
-        <h3>Selecciona el tipo de usuario</h3>
-        <select id="selMedPac">
-            <option value="paciente">Paciente</option>
-            <option value="medico">Medico</option>
-        </select>
+        <form id="registroForm">
+            <h3>Selecciona el tipo de usuario</h3>
+            <select id="selMedPac">
+                <option value="paciente">Paciente</option>
+                <option value="medico">Medico</option>
+            </select>
 
-        <form id="registroPac">
             <h3>Ingresa tu nombre</h3>
             <input type="text" id="nombre" placeholder="Nombre" required/>
 
@@ -61,8 +62,9 @@
         
             <h3>Ingresa una contraseña</h3>
             <input type="password" id="pass" placeholder="Contraseña" required/>
+            <br>
+            <button type="submit">Crear</button>
         </form>
-        <button type="submit">Crear</button>
     </div>
     
     <script src="js/login.js"></script>
