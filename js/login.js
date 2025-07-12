@@ -77,6 +77,13 @@ registroForm.addEventListener("submit", async function(e){
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
     alert("Registro exitoso");
     registroForm.reset();
+
+    localStorage.setItem("usuarioActivo", JSON.stringify(nuevoUsuario));
+
+    if (nuevoUsuario.rol === "paciente") {
+        window.location.href = "paciente.html";
+        } 
+        else window.location.href = "medico.html";
 });
 
 function calcularEdad(fechaNacStr){
