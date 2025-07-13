@@ -1,4 +1,26 @@
+//Bloquear dias anteriores en el calendario
+const fechaInput = document.getElementById("fechaCita");
+
+const hoy = new Date();
+const yyyy = hoy.getFullYear();
+const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+const dd = String(hoy.getDate()).padStart(2, '0');
+
+fechaInput.min = `${yyyy}-${mm}-${dd}`;
+
 const usuario = JSON.parse(localStorage.getItem("usuarioActivo"));
+const horaCitaSelect = document.getElementById("horaCita");
+
+// Horarios de 8AM - 12PM y 2PM a 5PM
+// Las citas duran media hora
+const bloquesDisponibles = [
+  "08:00", "08:30", "09:00", "09:30",
+  "10:00", "10:30", "11:00", "11:30",
+  "14:00", "14:30", "15:00", "15:30",
+  "16:00", "16:30"
+];
+
+document.getElementById("fechaCita").addEventListener("change", mostrarHorasDisponibles);
 
 //validación usuario
 if(!usuario || usuario.rol!=="paciente"){
@@ -32,10 +54,16 @@ function mostrarCitas(){
     citas.forEach(cita => {
         const li = document.createElement("li");
         li.textContent = `Fecha: ${cita.fecha} Hora: ${cita.hora} - ${cita.especialidad}`;
+        
+        const btnCancelar = document.createElement("button");
+        btnCancelar.textContent = "Cancelar";
+        btnCancelar.addEventListener("click", () => cancelarCita(cita));
+        
+        li.appendChild(btnCancelar);
         listaCitas.appendChild(li);
     });
 }
-//TODO: El usuario deberia ver rangos disponibles
+
 //guardar cita
 formCita.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -80,7 +108,7 @@ formCita.addEventListener("submit", function (e) {
         return;
     }
 
-
+    // Guardar cita
     const nuevaCita = {
         pacienteId: usuario.numId,
         fecha,
@@ -96,6 +124,55 @@ formCita.addEventListener("submit", function (e) {
     formCita.reset();
     mostrarCitas();
 })
+
+function mostrarHorasDisponibles() {
+    const fecha = document.getElementById("fechaCita").value;
+    const hoy = new Date().toISOString().split("T")[0];
+
+    horaCitaSelect.innerHTML = "";
+
+    if (!fecha || fecha < hoy){
+        horaCitaSelect.innerHTML = "<option value=''>Selecciona una fecha válida</option>";
+        return;
+    }
+
+    const citas = JSON.parse(localStorage.getItem("citas")) || [];
+    const ocupadas = citas.filter(c=>c.fecha===fecha).map(c=>c.hora);
+
+    const disponibles = bloquesDisponibles.filter(hora => !ocupadas.includes(hora));
+
+    if (disponibles.length===0){
+        horaCitaSelect.innerHTML = "<option value=''>No hay horarios disponibles</option>";
+        return;
+    }
+
+    disponibles.forEach(hora => {
+        const option=document.createElement("option");
+        option.value = hora;
+        option.textContent = hora;
+        horaCitaSelect.appendChild(option);
+    })
+}
+
+// Cancelar cita
+function cancelarCita(citaACancelar) {
+    if (!confirm("¿Estás seguro de cancelar esta cita?")) return;
+
+    let citas = JSON.parse(localStorage.getItem("citas")) || [];
+
+    citas = citas.filter(c =>
+        !(
+            c.pacienteId === citaACancelar.pacienteId &&
+            c.fecha === citaACancelar.fecha &&
+            c.hora === citaACancelar.hora &&
+            c.especialidad === citaACancelar.especialidad
+        )
+    );
+
+    localStorage.setItem("citas", JSON.stringify(citas));
+    alert("Cita cancelada correctamente.");
+    mostrarCitas();
+}
 
 // Cerrar sesión
 btnCerrarSesion.addEventListener("click", () => {
@@ -115,3 +192,5 @@ function sumarMinutos(horaStr, minutos) {
 function intervalosSeCruzan(inicio1, fin1, inicio2, fin2) {
   return !(fin1 <= inicio2 || inicio1 >= fin2);
 }
+
+
