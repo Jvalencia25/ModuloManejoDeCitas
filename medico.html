@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>title</title>
+    <title>Panel de médico</title>
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Medico</h1>
+    <h1>Gestión de Citas</h1>
+
+    <div id="secBusqueda">
+        <h3>Mostrar citas en un rango de fechas</h3>
+        <label>Desde:</label>
+        <input type="date" id="fechaDesde"/>
+        
+        <label>Hasta:</label>
+        <input type="date" id="fechaHasta"/>
+
+        <button id="btnBuscar">Buscar</button>
+    </div>
+
+    <div id="tabla">
+        <table id="tablaCitas">
+            <thead>
+                <tr>
+                    <th>Fecha (Desde - Hasta)</th>
+                    <th>Especialidad</th>
+                    <th>Paciente</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyCitas"></tbody>
+        </table>
+    </div>
+
+    <button id="btnCerrarSesion">Cerrar sesión</button>
+
+    <script src="js/medico.js"></script>
 </body>
 </html>
