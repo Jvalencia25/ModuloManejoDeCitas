@@ -47,8 +47,9 @@ function mostrarCitasFiltradas() {
     tbodyCitas.innerHTML="";
 
     citasFiltradas.forEach((cita, index) => {
-        const paciente = usuarios.find(u => u.numId === cita.paciente);
+        const paciente = usuarios.find(u => u.numId === cita.pacienteId);
         const pacienteNombre = paciente ? paciente.nombre : "Desconocido";
+        const pacienteCel = paciente ? paciente.celular : "Desconocido";
 
         const fechaFormateada = formatearCita(cita.fecha, cita.hora);
 
@@ -60,6 +61,7 @@ function mostrarCitasFiltradas() {
             <td>
                 <button onclick="editarCita(${index})">Editar</button>
                 <button onclick="cancelarCita(${index})">Cancelar</button>
+                <button onclick="enviarWhatsApp('${pacienteNombre}', '${pacienteCel}', '${cita.fecha}', '${cita.hora}')">Enviar a WhatsApp</button>
             </td>
         `;
 
@@ -128,3 +130,21 @@ function cancelarCita(index) {
   alert("Cita eliminada correctamente.");
   mostrarCitasFiltradas();
 }
+
+function enviarWhatsApp(nombre, celular, fecha, hora) {
+
+    if (celular === "Desconocido") {
+        alert("Error al enviar mensaje");
+        return;
+    }
+
+    const mensaje = `Hola ${nombre}, tu cita ha sido agendada para el ${fecha} a las ${hora}. ¡Gracias por confiar en nosotros!`;
+    const url = `https://wa.me/57${celular}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+};
+
+// Cerrar sesión
+btnCerrarSesion.addEventListener("click", () => {
+  localStorage.removeItem("usuarioActivo");
+  window.location.href = "index.html";
+});
