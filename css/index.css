@@ -1,0 +1,44 @@
+body{
+    background: url("../img/fondo.jpg")no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    min-height: 100vh; 
+}
+
+h2{
+    color: var(--primario) !important;
+}
+
+.btn-primary {
+  background-color: #0B74A9 !important;
+  border-color: var(--color-primario) !important;
+}
+
+.btn-primary:hover {
+  background-color: #095f88 !important;
+  border-color: #095f88 !important;
+}
+
+.btn-success {
+  background-color: #8DB20B !important;
+  border-color: #8DB20B !important;
+}
+
+.btn-success:hover {
+  background-color: #6e9309 !important;
+  border-color: #6e9309 !important;
+}
+
+#loginForm button{
+    font-weight: bold;
+}
+
+#registroForm button{
+    font-weight: bold;
+}
+
+p{
+    margin-bottom: 1px !important;
+}

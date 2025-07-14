@@ -1,0 +1,16 @@
+:root {
+  --primario: #0B74A9;
+  --secundario: #8DB20B;
+  --blanco: #ffffff;
+}
+
+body{ 
+    font-family: "Segoe UI" !important;
+    overflow-x: hidden;
+}
+
+.card{
+    background-color: var(--blanco);
+    border-radius: 1rem;
+    border: 1px solid grey !important;
+}

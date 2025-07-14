@@ -129,3 +129,12 @@ async function hashPassword(password){
     
     return hashHex;
 }
+
+//Ocultar y mostrar registro
+const btnMostrarRegistro = document.getElementById("btnMostrarRegistro");
+  const registroContainer = document.getElementById("registroContainer");
+
+  btnMostrarRegistro.addEventListener("click", () => {
+    registroContainer.classList.remove("d-none");
+    btnMostrarRegistro.parentElement.classList.add("d-none"); // oculta el botón después de mostrar el registro
+  });

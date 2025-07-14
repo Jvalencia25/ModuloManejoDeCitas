@@ -3,70 +3,101 @@
 <head>
     <meta charset="UTF-8" />
     <title>Login</title>
-    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/general.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Bienvenido</h1>
-    
-    <div>
-        <h2>Inicia sesión</h2>
+    <div class=" py-3 justify-content-center row">
+        <div class="card p-5 shadow" style="max-width: 400px; width: 100%">
+            <h1 class="text-center mb-4">Bienvenido</h1>
+            
+            <div>
+                <h2 class="text-center mb-4">Inicia sesión</h2>
 
-        <form id="loginForm">
-            <h3>Número de identificación</h3>
-            <input type="text" id="loginUsuario" placeholder="Número de identificación" required/>
-            <h3>Contraseña</h3>
-            <input type="password" id="loginContrasena" placeholder="Contraseña" required/>
-            <button type="submit">Ingresar</button>
-        </form>
-    </div>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="loginUsuario" class="form-label">Número de identificación</label>
+                        <input type="text" id="loginUsuario" placeholder="Número de identificación" class="form-control" required/>
+                    </div>   
+                    <div class="mb-3">
+                        <label for="loginContrasena" class="form-label">Contraseña</label>
+                        <input type="password" id="loginContrasena" placeholder="Contraseña" class="form-control" required/>
+                    </div> 
+                    <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                </form>
+            </div>
 
-    <br>
-
-    <div>
-        <h2>Registrarse</h2>
-
-        <form id="registroForm">
-            <h3>Selecciona el tipo de usuario</h3>
-            <select id="selMedPac">
-                <option value="paciente">Paciente</option>
-                <option value="medico">Medico</option>
-            </select>
-
-            <h3>Ingresa tu nombre</h3>
-            <input type="text" id="nombre" placeholder="Nombre" required/>
-
-            <h3>Ingresa tu fecha de nacimiento</h3>
-            <input type="date" id="fechaNac" required/>
-
-            <h3>Selecciona tu tipo de documento</h3>
-            <select id="seltipoDoc">
-                <option value="cc">Cédula de ciudadanía</option>
-                <option value="rc">Registro civil</option>
-                <option value="ti">Tarjeta de identidad</option>
-                <option value="ce">Cédula de extranjería</option>
-                <option value="pa">Pasaporte</option>
-            </select>
-
-            <h3>Ingresa el número</h3>
-            <input type="tel" id="numId" placeholder="Número de identificación" required/>
-        
-            <h3>Selecciona tu género</h3>
-            <select id="selgen">
-                <option value="m">Masculino</option>
-                <option value="f">Femenino</option>
-                <option value="o">Otro</option>
-            </select>
-
-            <h3>Ingresa tu número de celular</h3>
-            <input type="tel" id="cel" placeholder="Número de celular" required/>
-        
-            <h3>Ingresa una contraseña</h3>
-            <input type="password" id="pass" placeholder="Contraseña" required/>
             <br>
-            <button type="submit">Crear</button>
-        </form>
+
+            <div class="text-center mt-3">
+                <p>¿No tienes cuenta?</p>
+                <button type="button" class="btn btn-link" id="btnMostrarRegistro">Regístrate</button>
+            </div>
+
+            <div id="registroContainer" class="d-none mt-3">
+                <h2 class="text-center mb-4">Registrarse</h2>
+
+                <form id="registroForm">
+                    <div class="mb-3">
+                        <label for="selMedPac" class="form-label">Tipo de usuario:</label>
+                        <select id="selMedPac" class="form-select" required>
+                            <option value="paciente">Paciente</option>
+                            <option value="medico">Medico</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Ingresa tu nombre</label>
+                        <input type="text" id="nombre" class="form-control" placeholder="Nombre" required/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fechaNac" class="form-label">Ingresa tu fecha de nacimiento</label>
+                        <input type="date" id="fechaNac" class="form-control" required/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="seltipoDoc" class="form-label">Selecciona el tipo de documento</label>
+                        <select id="seltipoDoc" class="form-select" required>
+                            <option value="cc">Cédula de ciudadanía</option>
+                            <option value="rc">Registro civil</option>
+                            <option value="ti">Tarjeta de identidad</option>
+                            <option value="ce">Cédula de extranjería</option>
+                            <option value="pa">Pasaporte</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="numId" class="form-label">Número de identificación</label>
+                        <input type="tel" id="numId" class="form-control" placeholder="Número de identificación" required/>
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="selgen" class="form-label">Género</label>
+                        <select id="selgen" class="form-select" required>
+                        <option value="m">Masculino</option>
+                        <option value="f">Femenino</option>
+                        <option value="o">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cel" class="form-label">Número de celular</label>
+                        <input type="tel" id="cel" class="form-control" placeholder="Número de celular" required />
+                    </div>
+                
+                    <div class="mb-3">
+                        <label for="pass" class="form-label">Contraseña</label>
+                        <input type="password" id="pass" class="form-control" placeholder="Contraseña" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 mt-2">Registrarse</button>
+                </form>
+            </div>
+        </div>
     </div>
-    
+</body>
     <script src="js/login.js"></script>
 </body>
 </html>
