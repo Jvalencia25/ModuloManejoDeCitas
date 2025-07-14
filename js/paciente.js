@@ -47,19 +47,38 @@ function mostrarCitas(){
     const citas = obtenerCitas();
 
     if (citas.length === 0){
-        listaCitas.innerHTML = "<li>No tienes citas agendadas.</li>";
+        listaCitas.innerHTML = `
+            <li class="list-group-item text-center text-muted">No tienes citas agendadas.</li>
+        `;
         return;
     }
 
+    let especialidad;
+
     citas.forEach(cita => {
         const li = document.createElement("li");
-        li.textContent = `Fecha: ${cita.fecha} Hora: ${cita.hora} - ${cita.especialidad}`;
-        
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+
+        switch(cita.especialidad){
+            case "general" : especialidad = "Medicina General";break;
+            case "pediatria" : especialidad = "Pediatría" ;break;
+            case "odontologia": especialidad = "Odontología" ;break;
+            case "psicologia" : especialidad = "Psicología" ;break;
+        }
+        const citaInfo = document.createElement("div");
+        citaInfo.innerHTML = `
+            <strong>${especialidad}</strong><br>
+            <small>Fecha: ${cita.fecha} - Hora: ${cita.hora}</small>
+        `;
+
         const btnCancelar = document.createElement("button");
         btnCancelar.textContent = "Cancelar";
+        btnCancelar.className = "btn btn-outline-danger btn-sm";
         btnCancelar.addEventListener("click", () => cancelarCita(cita));
-        
+
+        li.appendChild(citaInfo);
         li.appendChild(btnCancelar);
+
         listaCitas.appendChild(li);
     });
 }

@@ -1,0 +1,10 @@
+body{
+    background: linear-gradient(to bottom, #0B74A9, #ffffff) no-repeat;
+}
+
+#listaCitas li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-left: 5px solid #8DB20B;
+  background-color: #f8f9fa;
+}
