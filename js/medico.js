@@ -59,9 +59,11 @@ function mostrarCitasFiltradas() {
             <td>${cita.especialidad}</td>
             <td>${pacienteNombre}</td>
             <td>
-                <button onclick="editarCita(${index})">Editar</button>
-                <button onclick="cancelarCita(${index})">Cancelar</button>
-                <button onclick="enviarWhatsApp('${pacienteNombre}', '${pacienteCel}', '${cita.fecha}', '${cita.hora}')">Enviar a WhatsApp</button>
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <button class="btn btn-outline-primary btn-sm" onclick="editarCita(${index})">Editar</button>
+                    <button class="btn btn-outline-success btn-sm" onclick="enviarWhatsApp('${pacienteNombre}', '${pacienteCel}', '${cita.fecha}', '${cita.hora}')">Enviar a WhatsApp</button>
+                    <button class="btn btn-outline-danger btn-sm" onclick="cancelarCita(${index})">Cancelar</button>
+                </div>
             </td>
         `;
 
